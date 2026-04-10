@@ -1,0 +1,15 @@
+name: Publish to Winget
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Submit PR to Winget
+        uses: vedantmgoyal2009/winget-releaser@v2
+        with:
+          identifier: JamboCompany.RunEnv
+          installers-regex: '\.exe$'
+          token: ${{ secrets.WINGET_TOKEN }}
